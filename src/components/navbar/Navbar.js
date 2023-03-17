@@ -1,24 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import PizzaLogo from '../assets/Pizza-logo.png';
+import PizzaLogo from '../../assets/Pizza-logo.png';
 
-//estilos del component
+//estilos del component navbar
 const NavbarStyled = styled.div`
   padding: 10px;
-  position: fixed;
-  background-color: black;
+  margin: 20px 0px 0px 20px;
   width: 100%;
   z-index: 999;
 `;
 
-//estilos de la img
+//estilos de la img-logo
 const LogoStyled = styled.img`
-  max-width: 200px;
+  max-width: 150px;
   height: auto;
   max-height: 100px;
 `;
 
-//component
+//componente Navbar
 export const Navbar = () => {
   return (
     <>
