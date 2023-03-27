@@ -1,4 +1,6 @@
+import React from 'react';
 import styled from 'styled-components';
+import { LabelStyled } from '../menu/FoodGrid';
 
 // Styles
 export const FoodDialogStyled = styled.div`
@@ -14,6 +16,21 @@ flex-direction: column;
 border-radius;8px;
 `;
 
+export const DialogBannerStyled = styled.div`
+  min-height: 150px;
+  margin-bottom: 20px;
+  ${({ img }) => `background-image: url(${img})`};
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px 8px 0px opx;
+`;
+
+// herencia de estilos
+export const DialBannNameStyled = styled(LabelStyled)`
+  top: 75px;
+  padding: 5px, 10px;
+`;
+
 const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
@@ -24,10 +41,25 @@ const DialogShadow = styled.div`
 `;
 
 // Componentes
-export const FoodDialogContainer = () => {
-  return <div>Container</div>;
+export const FoodDialogContainer = ({ openFood }) => {
+  return (
+    <>
+      <DialogShadow />
+      <FoodDialogStyled>
+        <DialogBannerStyled img={openFood.img}>
+          <DialBannNameStyled> {openFood.name} </DialBannNameStyled>
+        </DialogBannerStyled>
+      </FoodDialogStyled>
+    </>
+  );
 };
 
-export const FoodDialog = () => {
-  return <div>FoodDialog</div>;
+export const FoodDialog = (props) => {
+  if (!props.openFood) return null;
+
+  return (
+    <>
+      <FoodDialogContainer {...props} />
+    </>
+  );
 };

@@ -10,7 +10,7 @@ export const MenuStyled = styled.div`
 `;
 
 //componente Menu
-export const Menu = () => {
+export const Menu = ({ setOpenFood }) => {
   return (
     <>
       <MenuStyled>
@@ -20,7 +20,9 @@ export const Menu = () => {
               <h3> {sectionName} </h3>
               <FoodGridStyled>
                 {items.map((item) => (
-                  <ItemStyled img={item.img}> {item.name} </ItemStyled>
+                  <ItemStyled img={item.img} onClick={() => setOpenFood(item)}>
+                    {item.name}
+                  </ItemStyled>
                 ))}
               </FoodGridStyled>
             </>

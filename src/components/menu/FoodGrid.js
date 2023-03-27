@@ -8,6 +8,13 @@ export const FoodGridStyled = styled.div`
   margin-left: 20px;
 `;
 
+export const LabelStyled = styled.div`
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px;
+  font-size: 15px;
+`;
+
 // estilos para cada item de la grilla.
 //background-image: ${({ img }) => `url(${img})`}; la funcion anonima contiene las props,
 //podria ser props.img, pero desestructuradamente es {img}, entonces x cada prop cambia la url!

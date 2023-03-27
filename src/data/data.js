@@ -21,7 +21,7 @@ export const foodData = [
   },
   {
     name: 'Hamburguesa vegana completa',
-    img: 'img/hamburguesa-vegana.jpg',
+    img: 'img/hamburgesa-vegana.jpg',
     section: 'Hamburguesa',
   },
   {
@@ -39,8 +39,9 @@ export const foodData = [
 export const FoodItems = foodData.reduce((res, food) => {
   if (!res[food.section]) {
     res[food.section] = [];
-  } else {
-    res[food.section] = [...res[food.section], food];
   }
+
+  res[food.section] = [...res[food.section], food];
+
   return res;
 }, {});
