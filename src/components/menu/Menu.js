@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FoodItems } from '../../data/data';
+import { FoodItems, formatPrice } from '../../data/data';
 import { ItemStyled, FoodGridStyled } from './FoodGrid.js';
 
 //estilos del componente Menu
@@ -21,7 +21,8 @@ export const Menu = ({ setOpenFood }) => {
               <FoodGridStyled>
                 {items.map((item) => (
                   <ItemStyled img={item.img} onClick={() => setOpenFood(item)}>
-                    {item.name}
+                    <div> {item.name} </div>
+                    <div> {formatPrice(item.price)} </div>
                   </ItemStyled>
                 ))}
               </FoodGridStyled>

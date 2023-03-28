@@ -5,6 +5,7 @@ import { Banner } from './components/banner/Banner.js';
 import { Menu } from './components/menu/Menu.js';
 import { FoodDialog } from './components/foodDialog/FoodDialog.js';
 import { useOpenFood } from './hooks/useOpenFood.js';
+import { Orders } from './components/orders/Orders.js';
 
 export const App = () => {
   const openFood = useOpenFood();
@@ -19,6 +20,7 @@ export const App = () => {
         <p> Pedí online, rápido y fácil </p>
       </Banner>
       <Menu {...openFood} />
+      <Orders></Orders>
     </>
   );
 };
