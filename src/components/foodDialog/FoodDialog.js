@@ -75,9 +75,21 @@ export const DialogButtonStyled = styled(TitleStyled)`
 `;
 
 // Componentes //
-export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
+export const FoodDialogContainer = ({
+  openFood,
+  setOpenFood,
+  orders,
+  setOrders,
+}) => {
   const handlerClose = () => {
     setOpenFood();
+  };
+
+  const order = { ...openFood };
+
+  const addOrder = () => {
+    setOrders([...orders, order]);
+    handlerClose();
   };
 
   return (
@@ -91,7 +103,7 @@ export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
           contenido contenido contenido contenido
         </DialogContentStyled>
         <DialogFooterStyled>
-          <DialogButtonStyled>
+          <DialogButtonStyled onClick={addOrder}>
             Agregar: {formatPrice(openFood.price)}
           </DialogButtonStyled>
         </DialogFooterStyled>
