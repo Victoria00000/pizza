@@ -23,7 +23,8 @@ export const OrdersStyled = styled.div`
 
 export const OrdersContentStyled = styled(DialogContentStyled)`
   padding: 10px 5px;
-  height: 100%;
+  max-height: 100%;
+  height: 80%;
 `;
 
 export const OrdersContainerStyled = styled.div`
@@ -39,7 +40,7 @@ export const OrdersItemStyled = styled.div`
 `;
 
 // componentes //
-export const Orders = ({ orders, setOrders }) => {
+export const Orders = ({ orders }) => {
   return (
     <OrdersStyled>
       {!orders ? (
