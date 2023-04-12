@@ -32,6 +32,7 @@ export const DialogBannerStyled = styled.div`
 export const DialBannNameStyled = styled(LabelStyled)`
   top: 75px;
   padding: 5px 10px;
+  border-radius: 8px 8px 0px 0px;
 `;
 
 const DialogShadow = styled.div`
@@ -51,7 +52,6 @@ export const DialogContentStyled = styled.div`
 `;
 
 export const DialogFooterStyled = styled.div`
-  box-shadow: 0px -2px 10px 0px gray;
   display: flex;
   justify-content: center;
 `;

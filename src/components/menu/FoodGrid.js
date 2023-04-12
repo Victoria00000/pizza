@@ -8,8 +8,9 @@ export const FoodGridStyled = styled.div`
   gap: 20px;
 `;
 
+// estilos de labels
 export const LabelStyled = styled(TitleStyled)`
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 5px;
   font-size: 15px;
 `; //  position: absolute;

@@ -14,6 +14,7 @@ export const OrdersStyled = styled.div`
   right: 0px;
   top: 135px;
   width: 340px;
+  border-radius: 8px;
   background-color: white;
   height: calc(100% - 93px);
   z-index: 3;
@@ -40,7 +41,7 @@ export const OrdersItemStyled = styled.div`
   padding: 10px 5px;
   display: grid;
   grid-template-columns: 20px 150px 20px 60px;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 // componentes //
