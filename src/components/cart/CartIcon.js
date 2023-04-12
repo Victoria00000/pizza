@@ -1,7 +1,10 @@
 import React from 'react';
 import { ReactComponent as ShoppingIcon } from '../../assets/cart.svg';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import * as cartActions from '../../redux/cart/CartActions';
 
+//estilos
 const CartIconStyled = styled.div`
   width: 45px;
   height: 45px;
@@ -19,11 +22,19 @@ const ItemCountStyled = styled.span`
   bottom: 12px;
 `;
 
+// componentes
 export const CartIcon = () => {
+  const dispatch = useDispatch();
+
+  const handleToggle = () => {
+    dispatch(cartActions.toggleCartHidden());
+  };
+
   return (
-    <CartIconStyled>
+    <CartIconStyled onClick={handleToggle}>
       <ShoppingIcon style={{ width: '24px', height: '24px' }} />
-      <CartIconStyled> {0} </CartIconStyled>
+
+      <ItemCountStyled> {0} </ItemCountStyled>
     </CartIconStyled>
   );
 };

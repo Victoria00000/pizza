@@ -6,12 +6,13 @@ import {
   DialogButtonStyled,
 } from '../foodDialog/FoodDialog';
 import { formatPrice } from '../../data/data';
+import { useSelector } from 'react-redux';
 
 // estilos //
 export const OrdersStyled = styled.div`
   position: fixed;
   right: 0px;
-  top: 145px;
+  top: 135px;
   width: 340px;
   background-color: white;
   height: calc(100% - 93px);
@@ -19,10 +20,13 @@ export const OrdersStyled = styled.div`
   box-shadow: 4px 0px 5px 4px grey;
   display: flex;
   flex-direction: column;
+  transform: ${({ show }) => (show ? `translateX(0)` : `translateX(100)`)};
+  transition-property: transform;
+  transition-duration: 0.5s;
 `;
 
 export const OrdersContentStyled = styled(DialogContentStyled)`
-  padding: 10px 5px;
+  padding: 20px;
   max-height: 100%;
   height: 80%;
 `;
@@ -41,8 +45,10 @@ export const OrdersItemStyled = styled.div`
 
 // componentes //
 export const Orders = ({ orders }) => {
+  const hidden = useSelector((state) => state.cart.hidden);
+
   return (
-    <OrdersStyled>
+    <OrdersStyled show={hidden}>
       {!orders ? (
         <OrdersContentStyled> Nada por acá... </OrdersContentStyled>
       ) : (

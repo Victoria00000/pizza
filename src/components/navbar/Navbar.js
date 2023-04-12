@@ -1,21 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 import PizzaLogo from '../../assets/Pizza-logo.png';
+import { CartIcon } from '../cart/CartIcon.js';
 
 //estilos del component navbar
-const NavbarStyled = styled.div`
+export const NavbarStyled = styled.div`
   padding: 10px;
-  margin: 20px 0px 0px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
   width: 100%;
   z-index: 999;
   border-bottom: 1px solid #e5edef;
 `;
 
 //estilos de la img-logo
-const LogoStyled = styled.img`
-  max-width: 150px;
+export const LogoStyled = styled.img`
+  max-height: 110px;
   height: auto;
-  max-height: 100px;
+`;
+
+// contenedor del navbar
+export const NavbarContainerStyled = styled.div`
+  display: flex;
+  padding: 15px;
+  align-self: flex-end;
+  margin-right: 20px;
 `;
 
 //componente Navbar
@@ -24,6 +36,9 @@ export const Navbar = () => {
     <>
       <NavbarStyled>
         <LogoStyled src={PizzaLogo} />
+        <NavbarContainerStyled>
+          <CartIcon />
+        </NavbarContainerStyled>
       </NavbarStyled>
     </>
   );

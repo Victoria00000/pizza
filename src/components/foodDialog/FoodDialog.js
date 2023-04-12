@@ -25,22 +25,22 @@ export const DialogBannerStyled = styled.div`
   ${({ img }) => `background-image: url(${img})`};
   background-position: center;
   background-size: cover;
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
 `;
 
 // herencia de estilos
 export const DialBannNameStyled = styled(LabelStyled)`
   top: 75px;
-  padding: 5px, 10px;
+  padding: 5px 10px;
 `;
 
 const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 4;
   background-color: black;
   opacity: 0.7;
+  z-index: 4;
 `;
 
 export const DialogContentStyled = styled.div`
@@ -61,11 +61,11 @@ export const DialogButtonStyled = styled(TitleStyled)`
   color: white;
   height: 20px;
   border-radius: 8px;
+  padding: 10px;
   width: 200px;
   cursor: pointer;
   background-color: ${red};
   text-align: center;
-  padding: 10px;
   &:hover {
     opacity: 0.8;
   }
