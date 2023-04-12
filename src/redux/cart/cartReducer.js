@@ -1,7 +1,7 @@
-import { TOGGLE_CART_HIDDEN } from './CartActions';
+import { TOGGLE_CART_HIDDEN } from './cartActions';
 
 const INITIAL_STATE = {
-  hidden: true,
+  hidden: false,
   cartItems: [],
 };
 

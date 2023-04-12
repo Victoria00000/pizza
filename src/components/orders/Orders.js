@@ -16,11 +16,11 @@ export const OrdersStyled = styled.div`
   width: 340px;
   background-color: white;
   height: calc(100% - 93px);
-  z-index: 10;
+  z-index: 3;
   box-shadow: 4px 0px 5px 4px grey;
   display: flex;
   flex-direction: column;
-  transform: ${({ show }) => (show ? `translateX(0)` : `translateX(100)`)};
+  transform: ${({ show }) => (show ? `translateX(0)` : `translateX(100%)`)};
   transition-property: transform;
   transition-duration: 0.5s;
 `;

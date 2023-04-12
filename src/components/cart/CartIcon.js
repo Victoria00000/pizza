@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as ShoppingIcon } from '../../assets/cart.svg';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import * as cartActions from '../../redux/cart/CartActions';
+import * as cartActions from '../../redux/cart/cartActions';
 
 //estilos
 const CartIconStyled = styled.div`
