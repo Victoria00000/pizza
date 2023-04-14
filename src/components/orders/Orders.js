@@ -7,6 +7,7 @@ import {
 } from '../foodDialog/FoodDialog';
 import { formatPrice } from '../../data/data';
 import { useSelector } from 'react-redux';
+import { Quantity, QuantityStyled } from './Quantity';
 
 // estilos //
 export const OrdersStyled = styled.div`
@@ -40,29 +41,47 @@ export const OrdersContainerStyled = styled.div`
 export const OrdersItemStyled = styled.div`
   padding: 10px 5px;
   display: grid;
-  grid-template-columns: 20px 150px 20px 60px;
+  grid-template-columns: 50px 100px 100px;
   justify-content: center;
 `;
 
+const ItemImgStyled = styled.div`
+  width: 46px;
+  height: 46px;
+  background-image: ${({ img }) => `url(${img})`};
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 10px;
+`;
+
 // componentes //
-export const Orders = ({ orders }) => {
+export const Orders = () => {
   const hidden = useSelector((state) => state.cart.hidden);
+  const cartItems = useSelector((state) => state.cart.cartItems);
 
   return (
     <OrdersStyled show={hidden}>
-      {!orders ? (
+      {!cartItems ? (
         <OrdersContentStyled> Nada por acá... </OrdersContentStyled>
       ) : (
         <OrdersContentStyled>
           <OrdersContainerStyled> Tu pedido: </OrdersContainerStyled>
           <OrdersContainerStyled>
-            {orders.map((order) => {
+            {cartItems.map((item) => {
               return (
                 <OrdersContainerStyled>
                   <OrdersItemStyled>
-                    <div> 1 </div>
-                    <div> {order.name} </div>
-                    <div> {formatPrice(order.price)} </div>
+                    <ItemImgStyled img={item.img} />
+                    <div>
+                      <div> {item.name} </div>
+                      {formatPrice(item.price)}
+                    </div>
+                    <div>
+                      <Quantity item={item} />
+                    </div>
                   </OrdersItemStyled>
                 </OrdersContainerStyled>
               );

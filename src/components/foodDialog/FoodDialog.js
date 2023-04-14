@@ -4,6 +4,8 @@ import { LabelStyled } from '../menu/FoodGrid';
 import { TitleStyled } from '../../styles/title';
 import { red } from '../../styles/colors';
 import { formatPrice } from '../../data/data';
+import { useDispatch } from 'react-redux';
+import * as cartActions from '../../redux/cart/cartActions.js';
 
 // Styles //
 export const FoodDialogStyled = styled.div`
@@ -75,21 +77,15 @@ export const DialogButtonStyled = styled(TitleStyled)`
 `;
 
 // Componentes //
-export const FoodDialogContainer = ({
-  openFood,
-  setOpenFood,
-  orders,
-  setOrders,
-}) => {
+export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
+  const dispatch = useDispatch();
+
   const handlerClose = () => {
     setOpenFood();
   };
 
-  const order = { ...openFood };
-
   const addOrder = () => {
-    setOrders([...orders, order]);
-    handlerClose();
+    dispatch(cartActions.addItem(openFood));
   };
 
   return (

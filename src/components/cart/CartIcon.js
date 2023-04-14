@@ -1,10 +1,10 @@
 import React from 'react';
 import { ReactComponent as ShoppingIcon } from '../../assets/cart.svg';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as cartActions from '../../redux/cart/cartActions';
 
-//estilos
+// estilos //
 const CartIconStyled = styled.div`
   width: 45px;
   height: 45px;
@@ -15,26 +15,34 @@ const CartIconStyled = styled.div`
   cursor: pointer;
 `;
 
-const ItemCountStyled = styled.span`
+const ItemCountStyled = styled.div`
   position: absolute;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   bottom: 12px;
+  margin: 18px;
 `;
 
-// componentes
+// componentes //
 export const CartIcon = () => {
   const dispatch = useDispatch();
+
+  const quantity = useSelector((state) =>
+    state.cart.cartItems.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0)
+  );
 
   const handleToggle = () => {
     dispatch(cartActions.toggleCartHidden());
   };
 
   return (
-    <CartIconStyled onClick={handleToggle}>
-      <ShoppingIcon style={{ width: '24px', height: '24px' }} />
-
-      <ItemCountStyled> {0} </ItemCountStyled>
-    </CartIconStyled>
+    <>
+      <CartIconStyled onClick={handleToggle}>
+        <ShoppingIcon style={{ width: '24px', height: '24px' }} />
+        <ItemCountStyled> {quantity} </ItemCountStyled>
+      </CartIconStyled>
+    </>
   );
 };
