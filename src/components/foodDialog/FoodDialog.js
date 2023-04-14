@@ -37,13 +37,13 @@ export const DialBannNameStyled = styled(LabelStyled)`
   border-radius: 8px 8px 0px 0px;
 `;
 
-const DialogShadow = styled.div`
+export const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
   background-color: black;
   opacity: 0.7;
-  z-index: 4;
+  z-index: 3;
 `;
 
 export const DialogContentStyled = styled.div`

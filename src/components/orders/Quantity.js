@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { TitleStyled } from '../../styles/title';
 import { red } from '../../styles/colors';
 import RemoveIcon from '../../assets/delete.svg';
+import * as cartActions from '../../redux/cart/cartActions';
+import { useDispatch } from 'react-redux';
 
 // estilos //
 export const QuantityStyled = styled(TitleStyled)`
@@ -47,15 +49,24 @@ export const RmveItemStyled = styled.img`
 
 // componentes //
 export const Quantity = ({ item }) => {
+  const dispatch = useDispatch();
+
   return (
     <QuantityStyled>
       {+item.quantity === 1 ? (
-        <RmveItemStyled src={RemoveIcon}></RmveItemStyled>
+        <RmveItemStyled
+          src={RemoveIcon}
+          onClick={() => dispatch(cartActions.rmvItem(item))}
+        />
       ) : (
-        <QuantityBtnStyled> - </QuantityBtnStyled>
+        <QuantityBtnStyled onClick={() => dispatch(cartActions.rmvItem(item))}>
+          -
+        </QuantityBtnStyled>
       )}
       <QuantityValueStyled> {item.quantity} </QuantityValueStyled>
-      <QuantityBtnStyled> + </QuantityBtnStyled>
+      <QuantityBtnStyled onClick={() => dispatch(cartActions.addItem(item))}>
+        +
+      </QuantityBtnStyled>
     </QuantityStyled>
   );
 };

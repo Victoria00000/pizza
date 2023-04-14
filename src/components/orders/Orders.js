@@ -4,10 +4,11 @@ import {
   DialogContentStyled,
   DialogFooterStyled,
   DialogButtonStyled,
+  DialogShadow,
 } from '../foodDialog/FoodDialog';
 import { formatPrice } from '../../data/data';
 import { useSelector } from 'react-redux';
-import { Quantity, QuantityStyled } from './Quantity';
+import { Quantity } from './Quantity';
 
 // estilos //
 export const OrdersStyled = styled.div`
@@ -35,7 +36,7 @@ export const OrdersContentStyled = styled(DialogContentStyled)`
 
 export const OrdersContainerStyled = styled.div`
   padding: 20px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgray;
 `;
 
 export const OrdersItemStyled = styled.div`
@@ -63,35 +64,39 @@ export const Orders = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   return (
-    <OrdersStyled show={hidden}>
-      {!cartItems ? (
-        <OrdersContentStyled> Nada por acá... </OrdersContentStyled>
-      ) : (
-        <OrdersContentStyled>
-          <OrdersContainerStyled> Tu pedido: </OrdersContainerStyled>
-          <OrdersContainerStyled>
-            {cartItems.map((item) => {
-              return (
-                <OrdersContainerStyled>
-                  <OrdersItemStyled>
-                    <ItemImgStyled img={item.img} />
-                    <div>
-                      <div> {item.name} </div>
-                      {formatPrice(item.price)}
-                    </div>
-                    <div>
-                      <Quantity item={item} />
-                    </div>
-                  </OrdersItemStyled>
-                </OrdersContainerStyled>
-              );
-            })}
-          </OrdersContainerStyled>
-        </OrdersContentStyled>
-      )}
-      <DialogFooterStyled>
-        <DialogButtonStyled> Ir a pagar </DialogButtonStyled>
-      </DialogFooterStyled>
-    </OrdersStyled>
+    <>
+      {hidden && <DialogShadow />}
+
+      <OrdersStyled show={hidden}>
+        {!cartItems ? (
+          <OrdersContentStyled> Nada por acá... </OrdersContentStyled>
+        ) : (
+          <OrdersContentStyled>
+            <OrdersContainerStyled> Tu pedido: </OrdersContainerStyled>
+            <OrdersContainerStyled>
+              {cartItems.map((item) => {
+                return (
+                  <OrdersContainerStyled>
+                    <OrdersItemStyled>
+                      <ItemImgStyled img={item.img} />
+                      <div>
+                        <div> {item.name} </div>
+                        {formatPrice(item.price)}
+                      </div>
+                      <div>
+                        <Quantity item={item} />
+                      </div>
+                    </OrdersItemStyled>
+                  </OrdersContainerStyled>
+                );
+              })}
+            </OrdersContainerStyled>
+          </OrdersContentStyled>
+        )}
+        <DialogFooterStyled>
+          <DialogButtonStyled> Ir a pagar </DialogButtonStyled>
+        </DialogFooterStyled>
+      </OrdersStyled>
+    </>
   );
 };

@@ -1,5 +1,5 @@
-import { ADD_ITEM, TOGGLE_CART_HIDDEN } from './cartActions';
-import { addItemToCart } from './cartUtils';
+import { ADD_ITEM, RMV_ITEM, TOGGLE_CART_HIDDEN } from './cartActions';
+import { addItemToCart, remvItemToCart } from './cartUtils';
 
 const INITIAL_STATE = {
   hidden: false,
@@ -13,10 +13,17 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden,
       };
+
     case ADD_ITEM:
       return {
         ...state,
         cartItems: addItemToCart(state.cartItems, action.payload),
+      };
+
+    case RMV_ITEM:
+      return {
+        ...state,
+        cartItems: remvItemToCart(state.cartItems, action.payload),
       };
 
     default:

@@ -6,3 +6,9 @@ export const addItem = (item) => ({
   type: ADD_ITEM,
   payload: item,
 });
+
+export const RMV_ITEM = 'RMV_ITEM';
+export const rmvItem = (item) => ({
+  type: RMV_ITEM,
+  payload: item,
+});
