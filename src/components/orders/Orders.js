@@ -7,8 +7,9 @@ import {
   DialogShadow,
 } from '../foodDialog/FoodDialog';
 import { formatPrice } from '../../data/data';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Quantity } from './Quantity';
+import * as cartActions from '../../redux/cart/cartActions';
 
 // estilos //
 export const OrdersStyled = styled.div`
@@ -46,7 +47,7 @@ export const OrdersItemStyled = styled.div`
   justify-content: center;
 `;
 
-const ItemImgStyled = styled.div`
+export const ItemImgStyled = styled.div`
   width: 46px;
   height: 46px;
   background-image: ${({ img }) => `url(${img})`};
@@ -61,11 +62,23 @@ const ItemImgStyled = styled.div`
 // componentes //
 export const Orders = () => {
   const hidden = useSelector((state) => state.cart.hidden);
+
   const cartItems = useSelector((state) => state.cart.cartItems);
+
+  const dispatch = useDispatch();
+
+  const handleToggle = () => {
+    dispatch(cartActions.toggleCartHidden());
+  };
+
+  const total = cartItems.reduce(
+    (accumulate, item) => accumulate + item.price * item.quantity,
+    0
+  );
 
   return (
     <>
-      {hidden && <DialogShadow />}
+      {hidden && <DialogShadow onClick={handleToggle} />}
 
       <OrdersStyled show={hidden}>
         {!cartItems ? (
@@ -76,12 +89,12 @@ export const Orders = () => {
             <OrdersContainerStyled>
               {cartItems.map((item) => {
                 return (
-                  <OrdersContainerStyled>
+                  <OrdersContainerStyled key={item.id}>
                     <OrdersItemStyled>
                       <ItemImgStyled img={item.img} />
                       <div>
                         <div> {item.name} </div>
-                        {formatPrice(item.price)}
+                        {formatPrice(item.price * item.quantity)}
                       </div>
                       <div>
                         <Quantity item={item} />
@@ -94,7 +107,9 @@ export const Orders = () => {
           </OrdersContentStyled>
         )}
         <DialogFooterStyled>
-          <DialogButtonStyled> Ir a pagar </DialogButtonStyled>
+          <DialogButtonStyled>
+            Ir a pagar: {formatPrice(total)}
+          </DialogButtonStyled>
         </DialogFooterStyled>
       </OrdersStyled>
     </>

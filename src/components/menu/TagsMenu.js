@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray } from '../../styles/colors.js';
+import { gray } from '../../styles/utilities';
 
 // estilos
 export const TagsMenuStyled = styled.div`
@@ -13,11 +13,12 @@ export const TagsCardStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: ${({ selected }) => (selected ? '#e8e8e8' : 'white')};
   color: ${gray};
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.09);
   border-radius: 20px;
   padding: 0.35rem;
+  cursor: pointer;
   &:hover {
     background: #e8e8e8;
     box-shadow: none;

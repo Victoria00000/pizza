@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { formatPrice } from '../../data/data';
@@ -15,34 +15,59 @@ export const MenuStyled = styled.div`
 // componente Menu //
 export const Menu = ({ setOpenFood }) => {
   //
-  const FoodItems = useSelector((state) => {
+  let FoodItems = useSelector((state) => {
     //console.log(state.products.foods);
     return state.products.foods;
   });
+
+  const [section, setSection] = useState(null);
+
+  // Trae el arraySections para formar los botones del menu
   const categories = useSelector((state) => {
+    //console.log(state.categories.categories);
     return state.categories.categories;
   });
 
+  // filtro para botones del menu
+  if (section) {
+    FoodItems = { [section]: FoodItems[section] };
+  }
+
   return (
     <>
-      <h2> Menu </h2>
-      <TagsMenuStyled>
-        {categories.map((category) => (
-          <TagsCardStyled>
-            <TagsImgStyled img={category.imgTag} />
-            <p> {category.section} </p>
-          </TagsCardStyled>
-        ))}
-      </TagsMenuStyled>
-
       <MenuStyled>
+        <h2> Menu </h2>
+
+        <TagsMenuStyled>
+          {section && (
+            <TagsCardStyled onClick={() => setSection(null)}>
+              <p style={{ color: 'black' }}> todos </p>
+            </TagsCardStyled>
+          )}
+
+          {categories.map((category) => (
+            <TagsCardStyled
+              key={category.section}
+              onClick={() => setSection(category.section)}
+              selected={category.section === section}
+            >
+              <TagsImgStyled img={category.imgTag} />
+              <p> {category.section} </p>
+            </TagsCardStyled>
+          ))}
+        </TagsMenuStyled>
+
         {Object.entries(FoodItems).map(([sectionName, items]) => {
           return (
-            <>
+            <span key={sectionName}>
               <h3> {sectionName} </h3>
               <FoodGridStyled>
                 {items.map((item) => (
-                  <ItemStyled img={item.img} onClick={() => setOpenFood(item)}>
+                  <ItemStyled
+                    key={item.id}
+                    img={item.img}
+                    onClick={() => setOpenFood(item)}
+                  >
                     <LabelStyled>
                       <div> {item.name} </div>
                       <div> {formatPrice(item.price)} </div>
@@ -50,7 +75,7 @@ export const Menu = ({ setOpenFood }) => {
                   </ItemStyled>
                 ))}
               </FoodGridStyled>
-            </>
+            </span>
           );
         })}
       </MenuStyled>

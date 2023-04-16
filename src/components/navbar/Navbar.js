@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PizzaLogo from '../../assets/Pizza-logo.png';
 import { CartIcon } from '../cart/CartIcon.js';
+//import { fixed } from '../../styles/utilities';
 
 //estilos del component navbar
 export const NavbarStyled = styled.div`
