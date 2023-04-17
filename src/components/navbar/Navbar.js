@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PizzaLogo from '../../assets/Pizza-logo.png';
 import { CartIcon } from '../cart/CartIcon.js';
+import { Link } from 'react-router-dom';
 //import { fixed } from '../../styles/utilities';
 
 //estilos del component navbar
@@ -36,7 +37,10 @@ export const Navbar = () => {
   return (
     <>
       <NavbarStyled>
-        <LogoStyled src={PizzaLogo} />
+        <Link to="/">
+          <LogoStyled src={PizzaLogo} />
+        </Link>
+
         <NavbarContainerStyled>
           <CartIcon />
         </NavbarContainerStyled>

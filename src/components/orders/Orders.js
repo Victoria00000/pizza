@@ -10,6 +10,7 @@ import { formatPrice } from '../../data/data';
 import { useDispatch, useSelector } from 'react-redux';
 import { Quantity } from './Quantity';
 import * as cartActions from '../../redux/cart/cartActions';
+import { Link } from 'react-router-dom';
 
 // estilos //
 export const OrdersStyled = styled.div`
@@ -107,9 +108,11 @@ export const Orders = () => {
           </OrdersContentStyled>
         )}
         <DialogFooterStyled>
-          <DialogButtonStyled>
-            Ir a pagar: {formatPrice(total)}
-          </DialogButtonStyled>
+          <Link to="/checkout">
+            <DialogButtonStyled>
+              Ir a pagar: {formatPrice(total)}
+            </DialogButtonStyled>
+          </Link>
         </DialogFooterStyled>
       </OrdersStyled>
     </>

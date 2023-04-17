@@ -6,7 +6,7 @@ import { red } from '../../styles/utilities';
 import { formatPrice } from '../../data/data';
 import { useDispatch } from 'react-redux';
 import * as cartActions from '../../redux/cart/cartActions.js';
-import { above } from '../../styles/utilities';
+// import { above } from '../../styles/utilities';
 
 // Styles //
 export const FoodDialogStyled = styled.div`
@@ -52,6 +52,7 @@ export const DialogContentStyled = styled.div`
   min-height: 100px;
   max-height: 400px;
   margin: 10px;
+  padding: 20px;
 `;
 
 export const DialogFooterStyled = styled.div`
@@ -75,10 +76,7 @@ export const DialogButtonStyled = styled(TitleStyled)`
   &:active {
     opacity: 1;
   }
-  ${above.med`
-  background-color: blue
-  `}
-`;
+`; //   ${ above.med`background-color: blue` }
 
 // Componentes //
 export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
@@ -91,6 +89,7 @@ export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
 
   const addOrder = () => {
     dispatch(cartActions.addItem(openFood));
+    handlerClose();
   };
 
   return (
@@ -101,7 +100,7 @@ export const FoodDialogContainer = ({ openFood, setOpenFood }) => {
           <DialBannNameStyled> {openFood.name} </DialBannNameStyled>
         </DialogBannerStyled>
         <DialogContentStyled>
-          contenido contenido contenido contenido
+          <p> {openFood.description} </p>
         </DialogContentStyled>
         <DialogFooterStyled>
           <DialogButtonStyled onClick={addOrder}>
