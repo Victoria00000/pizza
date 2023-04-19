@@ -7,7 +7,13 @@ body{
     height: 100vh;
     background-color: #fafaf8;
 }
+
 h1, h2, h3 {
     font-family: "Montserrat", sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
 `;

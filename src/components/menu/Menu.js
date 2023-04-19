@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { formatPrice } from '../../data/data';
+import { formatPrice } from '../../utils';
 import { ItemStyled, FoodGridStyled, LabelStyled } from './FoodGrid.js';
 import { TagsCardStyled, TagsImgStyled, TagsMenuStyled } from './TagsMenu';
 

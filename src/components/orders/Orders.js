@@ -6,7 +6,7 @@ import {
   DialogButtonStyled,
   DialogShadow,
 } from '../foodDialog/FoodDialog';
-import { formatPrice } from '../../data/data';
+import { formatPrice } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Quantity } from './Quantity';
 import * as cartActions from '../../redux/cart/cartActions';
@@ -108,7 +108,7 @@ export const Orders = () => {
           </OrdersContentStyled>
         )}
         <DialogFooterStyled>
-          <Link to="/checkout">
+          <Link to="/checkout" onClick={handleToggle}>
             <DialogButtonStyled>
               Ir a pagar: {formatPrice(total)}
             </DialogButtonStyled>
