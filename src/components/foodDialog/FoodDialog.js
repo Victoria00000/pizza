@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LabelStyled } from '../menu/FoodGrid';
-import { TitleStyled } from '../../styles/title';
 import { red } from '../../styles/utilities';
 import { formatPrice } from '../../utils';
 import { useDispatch } from 'react-redux';
 import * as cartActions from '../../redux/cart/cartActions.js';
+import { TitleStyled } from '../UI/title';
 // import { above } from '../../styles/utilities';
 
 // Styles //

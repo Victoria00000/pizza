@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TitleStyled } from '../../styles/title';
 import { red } from '../../styles/utilities';
 import RemoveIcon from '../../assets/delete.svg';
 import * as cartActions from '../../redux/cart/cartActions';
 import { useDispatch } from 'react-redux';
+import { TitleStyled } from '../UI/title';
 
 // estilos //
 export const QuantityStyled = styled(TitleStyled)`

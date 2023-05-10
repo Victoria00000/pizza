@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TitleStyled } from '../../styles/title.js';
+import { TitleStyled } from '../UI/title';
 
 // estilos de grilla.
 export const FoodGridStyled = styled.div`

@@ -1,4 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
+import { CustomButton } from '../UI/CustomButton';
+import { COSTO_ENVIO, formatPrice } from '../../utils';
+import { useSelector } from 'react-redux';
 
 const CardContainer = styled.div`
   max-width: 660px;
@@ -44,3 +48,44 @@ const TotalCard = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const CardSummary = (props) => {
+  const totalItems = useSelector((state) =>
+    state.cart.cartItems.reduce(
+      (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+      0
+    )
+  );
+
+  return (
+    <CardContainer>
+      <CardSummaryStyled>
+        <CardSummaryContent>
+          <UlCard>
+            <LiCard>
+              <p> Costo de producto: </p>
+              <span> {formatPrice(totalItems)} </span>
+            </LiCard>
+            <LiCard>
+              <p> Costo de envío: </p>
+              <span> {formatPrice(COSTO_ENVIO)} </span>
+            </LiCard>
+          </UlCard>
+          <RowCard />
+          <TotalCard>
+            <h4> Total: </h4>
+            <h4> {formatPrice(totalItems + COSTO_ENVIO)} </h4>
+          </TotalCard>
+          <CustomButton
+            w="100%"
+            m="0px"
+            type="submit"
+            disabled={!props.formState.isValid}
+          >
+            Abonar
+          </CustomButton>
+        </CardSummaryContent>
+      </CardSummaryStyled>
+    </CardContainer>
+  );
+};
