@@ -23,6 +23,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { red } from '../styles/utilities';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 // Estilos //
 export const ContainerButtons = styled.div`
@@ -92,7 +93,8 @@ export const Login = () => {
       }
     } else {
       try {
-        const { user } = await auth.createUserWithEmailAndPassword(
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
           formState.inputs.email.value,
           formState.inputs.password.value
         );
