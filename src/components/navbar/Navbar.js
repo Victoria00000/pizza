@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import userIcon from '../../assets/user.svg';
 //import { fixed } from '../../styles/utilities';
 import { auth } from '../../firebase/firebase.util';
+import { useSelector } from 'react-redux';
+import { UserMenu } from '../userMenu/UserMenu';
 
 //estilos del component navbar
 export const NavbarStyled = styled.div`
@@ -62,6 +64,8 @@ export const NavbarContainerStyled = styled.div`
 
 //componente Navbar
 export const Navbar = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   return (
     <>
       <NavbarStyled>
@@ -72,10 +76,16 @@ export const Navbar = () => {
         <NavbarContainerStyled>
           <CartIcon />
           <Divider />
-          <Link to="/login">
-            <LoginButton> Ingresar </LoginButton>
-          </Link>
-          <UserStyled src={userIcon} onClick={() => auth.signOut()} />
+          {currentUser ? (
+            <>
+              <UserStyled src={userIcon} onClick={() => auth.signOut()} />
+              <UserMenu user={currentUser} />
+            </>
+          ) : (
+            <Link to="/login">
+              <LoginButton> Ingresar </LoginButton>
+            </Link>
+          )}
         </NavbarContainerStyled>
       </NavbarStyled>
     </>
