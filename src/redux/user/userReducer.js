@@ -11,6 +11,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
+        hiddenMenu: true,
       };
 
     case TOGGLE_MENU_HIDDEN:

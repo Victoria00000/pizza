@@ -36,6 +36,33 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+export const createOrderDocument = async (order) => {
+  if (!order) return;
+
+  const orderRef = doc(firestore, `orders/${order.uid}`);
+
+  const snapShot = await getDoc(userRef);
+
+  if (!snapShot.exists()) {
+    const createdAt = new Date();
+    try {
+      await setDoc(orderRef, {
+        userId: order.uid,
+        shippingDetails: { ...order.shippingDetails },
+        items: [...order.items],
+        shippingPrice: order.shippingPrice,
+        subTotal: order.subTotal,
+        total: order.total,
+        status: 'pendiente',
+        createdAt,
+      });
+    } catch (error) {
+      console.log('error creating order', error.message);
+    }
+  }
+  return orderRef;
+};
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 export const auth = getAuth(firebaseApp);

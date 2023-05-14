@@ -25,8 +25,8 @@ const UserMenuStyled = styled.div`
 const WelcomeTitle = styled.div`
   border-bottom: 1px solid #e5edef;
   width: 100%;
-  padding-bottom: 5px;
   padding: 15px 20px;
+  margin-left: 20px;
 `;
 
 const MenuOptions = styled.div`
@@ -56,13 +56,27 @@ const Shadow = styled.div`
 `;
 
 export const UserMenu = ({ user }) => {
+  const { hiddenMenu } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleToggleUserMenu = () => {
+    dispatch(userActions.toggleMenuHidden());
+  };
+
   return (
-    <UserMenuStyled>
-      <WelcomeTitle> Hola </WelcomeTitle>
-      <MenuOptions>
-        <MenuOptionElement> Mis ordenes </MenuOptionElement>
-        <MenuOptionElement> Cerrar sesión </MenuOptionElement>
-      </MenuOptions>
-    </UserMenuStyled>
+    <>
+      {!hiddenMenu && <Shadow onClick={handleToggleUserMenu} />}
+      {!hiddenMenu ? (
+        <UserMenuStyled>
+          <WelcomeTitle> Hola, {user.displayName} </WelcomeTitle>
+          <MenuOptions>
+            <MenuOptionElement> Mis ordenes </MenuOptionElement>
+            <MenuOptionElement onClick={() => auth.signOut()}>
+              Cerrar sesión
+            </MenuOptionElement>
+          </MenuOptions>
+        </UserMenuStyled>
+      ) : null}
+    </>
   );
 };

@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import userIcon from '../../assets/user.svg';
 //import { fixed } from '../../styles/utilities';
 import { auth } from '../../firebase/firebase.util';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { UserMenu } from '../userMenu/UserMenu';
+import * as userActions from '../../redux/user/userAction';
 
 //estilos del component navbar
 export const NavbarStyled = styled.div`
@@ -65,6 +66,11 @@ export const NavbarContainerStyled = styled.div`
 //componente Navbar
 export const Navbar = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+
+  const handleToggleUserMenu = () => {
+    dispatch(userActions.toggleMenuHidden());
+  };
 
   return (
     <>
@@ -78,7 +84,7 @@ export const Navbar = () => {
           <Divider />
           {currentUser ? (
             <>
-              <UserStyled src={userIcon} onClick={() => auth.signOut()} />
+              <UserStyled src={userIcon} onClick={handleToggleUserMenu} />
               <UserMenu user={currentUser} />
             </>
           ) : (
