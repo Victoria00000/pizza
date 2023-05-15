@@ -5,7 +5,6 @@ import {
   FETCH_ORDERS_FAIL,
   FETCH_ORDERS_START,
   FETCH_ORDERS_SUCCESS,
-  FETCH_ORDERS_FAIL,
   PURCHASE_INIT,
 } from './orderActions';
 

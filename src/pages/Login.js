@@ -78,7 +78,7 @@ export const Login = () => {
     if (currentUser) {
       navigate(-1);
     }
-  }, [currentUser, navigate]);
+  }, [currentUser, isLoginMode]);
 
   const submitHandler = async (event) => {
     event.preventDefault();

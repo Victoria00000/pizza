@@ -1,4 +1,9 @@
-import { ADD_ITEM, RMV_ITEM, TOGGLE_CART_HIDDEN } from './cartActions';
+import {
+  ADD_ITEM,
+  CLEAR_CART,
+  RMV_ITEM,
+  TOGGLE_CART_HIDDEN,
+} from './cartActions';
 import { addItemToCart, remvItemToCart } from './cartUtils';
 
 const INITIAL_STATE = {
@@ -24,6 +29,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         cartItems: remvItemToCart(state.cartItems, action.payload),
+      };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
       };
 
     default:

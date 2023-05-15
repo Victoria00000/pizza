@@ -12,3 +12,9 @@ export const rmvItem = (item) => ({
   type: RMV_ITEM,
   payload: item,
 });
+
+export const CLEAR_CART = 'CLEAR_CART';
+export const clearCart = (item) => ({
+  type: CLEAR_CART,
+  payload: item,
+});
