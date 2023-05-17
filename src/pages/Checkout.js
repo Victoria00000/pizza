@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { LayoutStyled, WrapperStyled } from '../components/UI';
 import { ShippingForm } from '../components/shippingForm/ShippingForm';
 import { useSelector } from 'react-redux';
@@ -8,9 +8,16 @@ export const Checkout = () => {
   const currentUser = useSelector((state) => state.currentUser);
   const navigate = useNavigate();
 
-  if (!currentUser) {
-    navigate('/login');
-  }
+  useEffect(() => {
+    async function checkUser() {
+      const CurrentUser = await currentUser;
+      if (!CurrentUser) {
+        navigate('/login');
+      }
+    }
+
+    checkUser();
+  }, []);
 
   return (
     <LayoutStyled>

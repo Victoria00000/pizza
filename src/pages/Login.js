@@ -60,6 +60,16 @@ export const Login = () => {
   const navigate = useNavigate();
   const [isLoginMode, setIsLoginMode] = useState(true);
 
+  useEffect(() => {
+    async function checkUser() {
+      const CurrentUser = await currentUser;
+      if (CurrentUser) {
+        navigate('/');
+      }
+    }
+    checkUser();
+  }, [currentUser]);
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -73,12 +83,6 @@ export const Login = () => {
     },
     false
   );
-
-  useEffect(() => {
-    if (currentUser) {
-      navigate(-1);
-    }
-  }, [currentUser, isLoginMode]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
